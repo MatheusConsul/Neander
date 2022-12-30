@@ -1,4 +1,4 @@
-// classe que converte de boolean para string 
+// classe que converte o vetor de boolean para uma string 
 
 package estruturasBasicas;
 
