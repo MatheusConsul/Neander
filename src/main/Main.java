@@ -10,7 +10,7 @@ class Main {
     // Instanciação do objeto teste, usado para realizar os teste de funcionamento das classes 
     TesteGerais teste = new TesteGerais();  
 
-    //System.out.println("\n\n TESTE TESTE TESTE");
+    System.out.println("\n\n TESTE TESTE TESTE");
 
     //teste.testePortas();
     //teste.testeMux();
