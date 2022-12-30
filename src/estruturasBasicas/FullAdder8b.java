@@ -1,5 +1,5 @@
 
-package neander;
+package estruturasBasicas;
 
 public class FullAdder8b{
   private FullAdder2b somador0 =new FullAdder2b();

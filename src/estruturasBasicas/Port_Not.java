@@ -1,5 +1,5 @@
 
-package neander;
+package estruturasBasicas;
 
 public class Port_Not {
   private boolean bitResultante;

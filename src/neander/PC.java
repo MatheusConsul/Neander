@@ -3,6 +3,7 @@
 package neander;
 
 import java.util.Arrays;
+import estruturasBasicas.FullAdder8b;
 
 public class PC{
   

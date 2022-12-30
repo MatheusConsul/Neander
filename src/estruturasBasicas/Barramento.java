@@ -1,6 +1,6 @@
 // classe que converte de boolean para string 
 
-package neander;
+package estruturasBasicas;
 
 public class Barramento{ 
    

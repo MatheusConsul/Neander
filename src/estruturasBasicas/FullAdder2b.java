@@ -1,6 +1,6 @@
 // Classe que implementa um somador completo para 2 bits
 
-package neander;
+package estruturasBasicas;
 
 public class FullAdder2b{
 

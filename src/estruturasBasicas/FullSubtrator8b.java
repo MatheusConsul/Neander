@@ -1,5 +1,5 @@
 
-package neander;
+package estruturasBasicas;
 
 public class FullSubtrator8b{
   //private FullSubtrator2b subtrador0 =new FullSubtrator2b();

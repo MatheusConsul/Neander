@@ -1,5 +1,5 @@
 
-package neander;
+package main;
 
 //import java.util.Arrays;
 
@@ -10,10 +10,11 @@ class Main {
     // Instanciação do objeto teste, usado para realizar os teste de funcionamento das classes 
     TesteGerais teste = new TesteGerais();  
 
-    System.out.println("\n\n TESTE TESTE TESTE kkkkkkk");
-    teste.testePortas();
-    teste.testeMux();
-    teste.testeSomador2b();
+    //System.out.println("\n\n TESTE TESTE TESTE");
+
+    //teste.testePortas();
+    //teste.testeMux();
+    //teste.testeSomador2b();
     teste.testeSomador8b();
 
 

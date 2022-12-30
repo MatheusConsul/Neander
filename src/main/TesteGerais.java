@@ -1,8 +1,18 @@
 // classe usada para realizar testes das outras classes.
 
-package neander;
+package main;
 
 import java.util.Arrays;
+
+import estruturasBasicas.Barramento;
+import estruturasBasicas.FullAdder2b;
+import estruturasBasicas.FullAdder8b;
+import estruturasBasicas.Port_And;
+import estruturasBasicas.Port_Nor;
+import estruturasBasicas.Port_Not;
+import estruturasBasicas.Port_Or;
+import estruturasBasicas.Port_Xor;
+import neander.Mux2p1;
 
 public class TesteGerais{
 
