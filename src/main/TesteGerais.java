@@ -4,15 +4,8 @@ package main;
 
 import java.util.Arrays;
 
-import estruturasBasicas.Barramento;
-import estruturasBasicas.FullAdder2b;
-import estruturasBasicas.FullAdder8b;
-import estruturasBasicas.Port_And;
-import estruturasBasicas.Port_Nor;
-import estruturasBasicas.Port_Not;
-import estruturasBasicas.Port_Or;
-import estruturasBasicas.Port_Xor;
-import neander.Mux2p1;
+import elementosDaArquitetura.*;
+import estruturasBasicas.*;
 
 public class TesteGerais{
 
@@ -168,7 +161,58 @@ public class TesteGerais{
     
   }
 
-  
+  public void testeFlipFlop(){
+
+    Flip_Flop_d flip = new Flip_Flop_d();
+
+
+    System.out.println("\n\n====== TESTE DO FLIP FLOP ========\n");
+
+    System.out.println("Valor inicial do flipflop antes de qualquer alteração ");
+    System.out.println("enviado os seguintes parametros true/1 mas o clock em 0/false: " + flip.executar(true,false));
+    System.out.println("Valor do flipflop ao grava 1/true e clk em 1/true: " + flip.executar(true,true));
+    System.out.print("Valor do flipflop depois da alteração anterior parametros enviados: 0/false e clk em 0/false: ");
+    System.out.println(flip.executar(true,false));
+
+
+
+    System.out.println("\n====== FIM DO TESTE DO FLIP FLOP ========\n\n");
+
+  }
+
+  public void testeRegistrado8b(){
+
+    Registrador8b registrador = new Registrador8b();
+    boolean[] vetTeste = new boolean[8];
+    Barramento barramento = new Barramento();
+    Arrays.fill(vetTeste,true); // comando para setar todo o vetor com o valor false
+
+
+
+    System.out.println("\n\n====== TESTE DO REGISTRADOR ========\n");
+
+    System.out.println("Valor inicial do REGISTRADOR antes de qualquer alteração ");
+    System.out.println("parametro: vetor todo em true e clock em false: " + barramento.executar(registrador.executar(vetTeste,false)));
+
+    vetTeste[1] = false; vetTeste[3] = false; vetTeste[5] = false;vetTeste[7] = false;
+    System.out.println("\n Valor do vetor alternado e clk em 1/true: " + barramento.executar(registrador.executar(vetTeste,true)));
+
+    Arrays.fill(vetTeste,false);
+    System.out.print("\nRegistrado depois da alteração anterior parametros vetor todo em false e clk em 0/false: ");
+    System.out.println(barramento.executar(registrador.executar(vetTeste,false)));
+
+
+
+    System.out.println("\n====== FIM DO TESTE DO REGISTRADOR ========\n\n");
+
+
+
+
+
+  }
+
+
+
 }
 
 

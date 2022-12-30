@@ -1,6 +1,6 @@
 
 
-package neander;
+package elementosDaArquitetura;
 
 import java.util.Arrays;
 import estruturasBasicas.FullAdder8b;
@@ -15,10 +15,10 @@ public class PC{
     Arrays.fill(contador,false); // comando para setar todo o vetor com o valor false
   }
   
-  public boolean[] executar(boolean cargaPC, boolean incrementaPC){
+  public boolean[] executar(boolean cargaPC, boolean incrementaPC, boolean vetRDM[]){
 
     if(cargaPC == true){
-      
+      contador = vetRDM;
     }
     
     if(incrementaPC == true){
@@ -29,3 +29,4 @@ public class PC{
   }
 
 }
+

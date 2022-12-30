@@ -2,7 +2,7 @@
 // seleciona atravez da variavel "sel" qual vetor vai recebido (vetPC e vetRDM) qual vai 
 // ser repassado para a saida "vetResultante"
 
-package neander;
+package elementosDaArquitetura;
 
 public class Mux2p1{
 
