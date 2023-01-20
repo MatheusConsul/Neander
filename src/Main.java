@@ -1,6 +1,3 @@
-
-package main;
-
 //import java.util.Arrays;
 
 class Main {
@@ -12,7 +9,7 @@ class Main {
 
     System.out.println("\n\n TESTE TESTE TESTE");
 
-    System.out.println("\n\n TESTE apartir de 20/01 ");
+    
 
     //teste.testePortas();
     //teste.testeMux();
@@ -21,6 +18,7 @@ class Main {
     //teste.testeFlipFlop();
     teste.testeRegistrado8b();
 
+    System.out.println("\n\n TESTE apartir de 20/01 ");
 
     
     //FullSubtrator2b sub = new FullSubtrator2b();

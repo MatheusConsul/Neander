@@ -1,6 +1,6 @@
 // classe usada para realizar testes das outras classes.
 
-package main;
+
 
 import java.util.Arrays;
 
