@@ -12,6 +12,8 @@ class Main {
 
     System.out.println("\n\n TESTE TESTE TESTE");
 
+    System.out.println("\n\n TESTE apartir de 20/01 ");
+
     //teste.testePortas();
     //teste.testeMux();
     //teste.testeSomador2b();
