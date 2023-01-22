@@ -3,6 +3,7 @@ package estruturasBasicas;
 public class Multiplicador8b{
   
 public void executar(boolean[] S1, boolean[] S2, boolean Cin){   
+Conversor converter = new Conversor(); 
 if(Cin == true){ 
 try {
            
