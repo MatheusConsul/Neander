@@ -1,6 +1,6 @@
 // classe usada para realizar testes das outras classes.
 
-package main;
+
 
 import java.util.Arrays;
 
@@ -149,30 +149,44 @@ public class TesteGerais{
     Arrays.fill(resultado,false); // comando para setar todo o vetor com o valor false
 
     resultado = somador.executar(vetA,vetB);
-    Barramento barramento = new Barramento();
+    Conversor converter = new Conversor();
 
     
     System.out.println("\n\n=========== CONTEUDO SOMADOR: ==========");
     System.out.println("Resultado da soma em binario: ");
-    System.out.println("vetA =   " + barramento.executar(vetA));
-    System.out.println("vetB = + " + barramento.executar(vetB));
+    System.out.println("vetA =   " + converter.paraString(vetA));
+    System.out.println("vetB = + " + converter.paraString(vetB));
     System.out.println("-----------------------");
-    System.out.println("result = " + barramento.executar(resultado));
+    System.out.println("result = " + converter.paraString(resultado));
     
   }
 
   public void testeFlipFlop(){
 
     Flip_Flop_d flip = new Flip_Flop_d();
+    boolean valorDoFlip = false;
 
 
     System.out.println("\n\n====== TESTE DO FLIP FLOP ========\n");
 
-    System.out.println("Valor inicial do flipflop antes de qualquer alteração ");
-    System.out.println("enviado os seguintes parametros true/1 mas o clock em 0/false: " + flip.executar(true,false));
-    System.out.println("Valor do flipflop ao grava 1/true e clk em 1/true: " + flip.executar(true,true));
-    System.out.print("Valor do flipflop depois da alteração anterior parametros enviados: 0/false e clk em 0/false: ");
-    System.out.println(flip.executar(true,false));
+    valorDoFlip = flip.executar(false,false);
+    System.out.println("Valor do flipflop ao enviar DADO: false CLOCK: false => "  + valorDoFlip);
+
+    valorDoFlip = flip.executar(true,false);
+    System.out.println("Valor do flipflop ao enviar DADO: true CLOCK: false => "  + valorDoFlip);
+
+    valorDoFlip = flip.executar(true,true);
+    System.out.println("Valor do flipflop ao enviar DADO: true CLOCK: true => "  + valorDoFlip);
+
+    valorDoFlip = flip.executar(false,false);
+    System.out.println("Valor do flipflop ao enviar DADO: false CLOCK: false => "  + valorDoFlip);
+
+    valorDoFlip = flip.executar(false,true);
+    System.out.println("Valor do flipflop ao enviar DADO: false CLOCK: true => "  + valorDoFlip);
+
+    valorDoFlip = flip.executar(true,false);
+    System.out.println("Valor do flipflop ao enviar DADO: true CLOCK: false => "  + valorDoFlip);
+
 
 
 
@@ -184,7 +198,7 @@ public class TesteGerais{
 
     Registrador8b registrador = new Registrador8b();
     boolean[] vetTeste = new boolean[8];
-    Barramento barramento = new Barramento();
+    Conversor converter = new Conversor();
     Arrays.fill(vetTeste,true); // comando para setar todo o vetor com o valor false
 
 
@@ -192,14 +206,14 @@ public class TesteGerais{
     System.out.println("\n\n====== TESTE DO REGISTRADOR ========\n");
 
     System.out.println("Valor inicial do REGISTRADOR antes de qualquer alteração ");
-    System.out.println("parametro: vetor todo em true e clock em false: " + barramento.executar(registrador.executar(vetTeste,false)));
+    System.out.println("parametro: vetor todo em true e clock em false: " + converter.paraString(registrador.executar(vetTeste,false)));
 
     vetTeste[1] = false; vetTeste[3] = false; vetTeste[5] = false;vetTeste[7] = false;
-    System.out.println("\n Valor do vetor alternado e clk em 1/true: " + barramento.executar(registrador.executar(vetTeste,true)));
+    System.out.println("\n Valor do vetor alternado e clk em 1/true: " + converter.paraString(registrador.executar(vetTeste,true)));
 
     Arrays.fill(vetTeste,false);
     System.out.print("\nRegistrado depois da alteração anterior parametros vetor todo em false e clk em 0/false: ");
-    System.out.println(barramento.executar(registrador.executar(vetTeste,false)));
+    System.out.println(converter.paraString(registrador.executar(vetTeste,false)));
 
 
 
@@ -210,6 +224,113 @@ public class TesteGerais{
 
 
   }
+
+  public void testeREM(){
+
+
+    REM rem = new REM();
+    boolean[] vetQueVemDoMux = new boolean[8];
+    boolean[] vetQueSaiDoREM = new boolean[8];
+    Conversor converter = new Conversor();
+
+    Arrays.fill(vetQueVemDoMux,true);
+
+
+    vetQueSaiDoREM = rem.executar(vetQueVemDoMux, false, false);
+
+    System.out.println("\n\n=============== TESTE DO REM ====================\n");
+
+    System.out.println("Valor inicial do REM enviando o vetMux todo em true e clk e cargaREM em false: " + converter.paraString(vetQueSaiDoREM));
+
+    vetQueSaiDoREM = rem.executar(vetQueVemDoMux, false, true);
+    System.out.println("Valor REM enviando o vetMux todo em true e clk=false cargaREM=true: " + converter.paraString(vetQueSaiDoREM));
+
+    vetQueSaiDoREM = rem.executar(vetQueVemDoMux, true, true);
+    System.out.println("Valor REM enviando o vetMux todo em true e clk=true cargaREM=true: " + converter.paraString(vetQueSaiDoREM));
+
+    vetQueVemDoMux[1] = false; vetQueVemDoMux[3] = false;vetQueVemDoMux[5] = false; vetQueVemDoMux[7] = false;
+
+    vetQueSaiDoREM = rem.executar(vetQueVemDoMux, true, true);
+    System.out.println("Valor REM enviando o vetMux aternado e clk=true cargaREM=true: " + converter.paraString(vetQueSaiDoREM));
+
+    Arrays.fill(vetQueVemDoMux,false);
+
+    vetQueSaiDoREM = rem.executar(vetQueVemDoMux, false, true);
+    System.out.println("Valor REM enviando o vetMux todo em false e clk=false cargaREM=true: " + converter.paraString(vetQueSaiDoREM));
+
+    vetQueSaiDoREM = rem.executar(vetQueVemDoMux, true, false);
+    System.out.println("Valor REM enviando o vetMux todo em false e clk=true cargaREM=false: " + converter.paraString(vetQueSaiDoREM));
+
+    vetQueSaiDoREM = rem.executar(vetQueVemDoMux, true, true);
+    System.out.println("Valor REM enviando o vetMux todo em false e clk=true cargaREM=true: " + converter.paraString(vetQueSaiDoREM));
+
+    System.out.println("\n================ FIM DO TESTE REM ==================\n\n");
+
+  }
+
+  public void testeMemoria(){
+
+    Conversor converter = new Conversor();
+    Memoria memoria = new Memoria();
+    boolean posicaoREM[] = {false,false,false,false,false,false,true,false};
+    boolean read = false;
+    boolean write = false;
+    boolean dadoMemoria[] = new boolean[8];
+
+
+    System.out.println("\n\n=============== TESTE DA MEMORIA ====================\n");
+    System.out.println("\n Por padrão a memoria é inicializada toda zerada (false)\n");
+
+    System.out.println("\n Vamos escrever o dado 11001100 na posição 2 e mostra em tela:");
+    boolean dadoRDM[] = {true,true,false,false,true,true,false,false};
+    write =true;
+    memoria.executar(read,write, posicaoREM,dadoRDM);
+    write =false;
+    read = true;
+    dadoMemoria = memoria.executar(read,write, posicaoREM,dadoRDM);
+    System.out.println("\n Resultado: " + converter.paraString(dadoMemoria) + "\n\n");
+
+    System.out.println("\n Vamos mostra toda a memoria:");
+    
+    for(int i =0; i<256;i++){
+
+    write =false;
+    read = true;
+    posicaoREM = converter.paraVetBoolean(i);
+    dadoMemoria = memoria.executar(read,write, posicaoREM,dadoRDM);
+    System.out.println(" POSIÇÃO " + i + " : " + converter.paraString(dadoMemoria));
+
+    }
+
+    System.out.println("\n Vamos alterar os dados das posições pares para: 11110011 : \n");
+    
+    dadoRDM[0] = true;dadoRDM[1] = true;dadoRDM[2] = true;dadoRDM[3] = true;
+    dadoRDM[4] = false;dadoRDM[5] = false;dadoRDM[6] = true;dadoRDM[7] = true;
+
+    write = true; // ativa a escrita na memoria 
+    read = false; // desativa a leitura na memoria
+
+    for(int i =0; i<256;i+=2){
+
+      posicaoREM = converter.paraVetBoolean(i);
+      dadoMemoria = memoria.executar(read,write, posicaoREM,dadoRDM);
+
+    }
+
+    write = false; // desativa a escrita na memoria 
+    read = true; // ativa a leitura da memoria
+
+    for(int i =0; i<256;i++){
+
+        posicaoREM = converter.paraVetBoolean(i);
+        dadoMemoria = memoria.executar(read,write, posicaoREM,dadoRDM);
+        System.out.println(" POSIÇÃO " + i + " : " + converter.paraString(dadoMemoria));
+    
+        }
+    
+
+
+  } 
 
 
 

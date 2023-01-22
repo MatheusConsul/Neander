@@ -8,6 +8,7 @@ import estruturasBasicas.FullAdder8b;
 public class PC{
   
   private boolean[] contador = new boolean[8];
+  private boolean[] contadorAux = new boolean[8];
   private boolean umBinario[] = {false,false,false,false,false,false,false,true};
   private FullAdder8b somador = new FullAdder8b();
   
@@ -19,13 +20,13 @@ public class PC{
 
     if(cargaPC == true){
       contador = vetRDM;
-    }
-    
-    if(incrementaPC == true){
+      contadorAux = contador;
+    }else if(incrementaPC == true){
+      contadorAux = contador;
       contador = somador.executar(contador, umBinario);
     }
     
-    return contador;
+    return contadorAux;
   }
 
 }
