@@ -2,7 +2,7 @@ package estruturasBasicas;
 
 public class Multiplicador8b{
   
-public void executar(String valor1, String valor2, boolean Cin){   
+public void executar(boolean[] S1, boolean[] S2, boolean Cin){   
 if(Cin == true){ 
 try {
            
