@@ -20,9 +20,9 @@ class Main {
     //teste.testeFlipFlop();
     //teste.testeRegistrado8b();
     //teste.testeREM();
-    teste.testeMemoria();
+    //teste.testeMemoria();
 
-    /* 
+     
     Conversor converter = new Conversor();
 
     boolean vet[] = new boolean[8];
@@ -40,7 +40,7 @@ class Main {
     valor = 5;
     vet = converter.paraVetBoolean(valor);
     System.out.println("result: " + converter.paraString(vet) + "\n");
-    */
+    
     
 
 
