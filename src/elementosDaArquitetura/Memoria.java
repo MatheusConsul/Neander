@@ -1,54 +1,70 @@
 
 package elementosDaArquitetura;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+
+import estruturasBasicas.Conversor;
+import estruturasBasicas.Registrador8b;
 
 public class Memoria{
-//private ArrayList<String> instrucao = new ArrayList<String>(); 
-private ArrayList<String> dados = new ArrayList<String>();
 
-private String inst;
-private String val;
-private boolean instru;
-//private int cont = 0;
+// vetor de 256 posições para simular a memoria, cada posição
+// é um registrador de 8 bits
+private Registrador8b memoria[] = new Registrador8b[256]; 
+Conversor converter = new Conversor(); // objeto usado para converte de boolean(binario) para inteiro
+
+
+
   
- Memoria(String instrucao, String valor){
-  inst = instrucao; 
-  val = valor; 
-  setinst(inst);
-  setvalor(val);
-   //cont++;
-  
+public Memoria(){
+
+  // Construtor garante a inicialização da memoria com todas as 
+  // posições zeradas
+
+  Registrador8b registrador = new Registrador8b();
+  boolean[] umByte = {false,false,false,false,false,false,false,false};
+ 
+  registrador.executar(umByte,true);
+
+  Arrays.fill(memoria, registrador);
+
 }
-  
-  protected void setinst(String a) {
-  // adicionar até a metade da memoria 
-    inst = a;
-  } 
-  
-	protected void setvalor(String val) { 
-    // adicionar apartir da metade da memoria 
-     dados.add(val);
-  } 
-  
-  public boolean getinst() { 
-    
-    
-    return instru; 
-  } 
 
-  public boolean setinst2(String inst){
-    if(inst != "00")
-    instru = true;
-    else
-    instru = false; 
-    
-    return instru;
+
+
+public boolean[] executar(boolean read, boolean write, boolean posicaoREM[], boolean dadoRDM[]){
+  Registrador8b resgistrador = new Registrador8b();
+  boolean vetDado[] = new boolean[8];
+
+  if(read == true){
+
+    int posicao = converter.paraInteiro(posicaoREM); // converte para inteiro a posição da memoria a ser acessada
+    resgistrador = memoria[posicao]; // vai retorna o registrador da posição solicitada
+    vetDado = resgistrador.executar(vetDado, false); // clock em false retorna o conteudo do registrador
+
+  }else if(write == true){
+
+    int posicao = converter.paraInteiro(posicaoREM); // converte para inteiro a posição da memoria a ser escrita
+    resgistrador.executar(dadoRDM, true); // clock em true grava os dados no registrador e o retorno pode ser despresado
+    memoria[posicao] = resgistrador; // agora grava o registrador na memoria 
+
+  }else{
+    System.out.println("\n\n ERRO NA MEMORIA");
   }
-  
-	public String getvalor(){ 
-   
-    return val; 
-    
-  }
+
+
+  return vetDado;
+}
+
+
+
+// para receber o codigo e os dados escritos pelo usuario
+public void inserirDadosUser(){
+
+
+}
+
+
+
+
 }
