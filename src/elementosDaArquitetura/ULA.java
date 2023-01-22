@@ -2,6 +2,10 @@
 package elementosDaArquitetura;
 
 import estruturasBasicas.Conversor;
+import estruturasBasicas.Multiplicador8b;
+import estruturasBasicas.FullSubtrator8b;
+import estruturasBasicas.FullAdder8b;
+/// adicionei as bibliotecas das operações
 
 public class ULA {
 
