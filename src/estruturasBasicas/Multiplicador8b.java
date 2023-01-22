@@ -6,11 +6,10 @@ public void executar(boolean[] S1, boolean[] S2, boolean Cin){
 Conversor converter = new Conversor(); 
 if(Cin == true){ 
 try {
-           
-            int foo = Integer.parseInt(valor1, 2);
-            int foo2 = Integer.parseInt(valor2, 2);
+          int foo= converter.paraInteiro(S1);
+          int foo2 = converter.paraInteiro(S1);
             int result = foo *foo2;
-            char value_char= (char)result;
+            char value_char= conveter.paraString(result);
              System.out.println(value_char);
            
         } catch (NumberFormatException e) {
