@@ -24,17 +24,6 @@ class Main {
     //teste.testeDecodificador();
     teste.testeULA();
 
-
-
-    //FullSubtrator2b sub = new FullSubtrator2b();
-    //boolean[] result = new boolean[2];
-
-
-    //result = sub.executar(true,true,false);
-
-    //System.out.println("Resultado sub: " + result[0]+" "+ result[1]);
-
-    
     
   }
 
