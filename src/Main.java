@@ -21,27 +21,9 @@ class Main {
     //teste.testeRegistrado8b();
     //teste.testeREM();
     //teste.testeMemoria();
+    //teste.testeDecodificador();
+    teste.testeULA();
 
-     
-    Conversor converter = new Conversor();
-
-    boolean vet[] = new boolean[8];
-
-    int valor = 2 ;
-
-    vet = converter.paraVetBoolean(valor);
-    System.out.println("result: " + converter.paraString(vet) + "\n");
-    valor = 3;
-    vet = converter.paraVetBoolean(valor);
-    System.out.println("result: " + converter.paraString(vet) + "\n");
-    valor = 4;
-    vet = converter.paraVetBoolean(valor);
-    System.out.println("result: " + converter.paraString(vet) + "\n");
-    valor = 5;
-    vet = converter.paraVetBoolean(valor);
-    System.out.println("result: " + converter.paraString(vet) + "\n");
-    
-    
 
 
     //FullSubtrator2b sub = new FullSubtrator2b();

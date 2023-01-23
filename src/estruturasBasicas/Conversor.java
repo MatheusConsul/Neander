@@ -25,31 +25,18 @@ public class Conversor{
 
   public int paraInteiro(boolean[] S1){
     int valor = 0;
+    int x = 1;
+    int tamanho = S1.length;
+    tamanho --;
 
-      if(S1[7] == true){
-        valor += 1;
+    for(int i = tamanho; i >= 0; i--){
+      
+      if(S1[i] == true){
+        valor += x;
       }
-      if(S1[6] == true){
-        valor += 2;
-      }
-      if(S1[5] == true){
-        valor += 4;
-      }
-      if(S1[4] == true){
-        valor += 8;
-      }
-      if(S1[3] == true){
-        valor += 16;
-      }
-      if(S1[2] == true){
-        valor += 32;
-      }
-      if(S1[1] == true){
-        valor += 64;
-      }
-      if(S1[0] == true){
-        valor += 128;
-      }
+
+      x += x;
+    }
 
     return valor;
   }

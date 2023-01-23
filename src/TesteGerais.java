@@ -9,7 +9,32 @@ import estruturasBasicas.*;
 
 public class TesteGerais{
 
-  // teste das portas logicas, imprime tabela verdade das portas 
+  public void testeConversor(){
+
+    System.out.println("\n\n======== TESTE DO CONVERSOR PARA VET BOOLEAN =============\n");
+
+    Conversor converter = new Conversor();
+
+    boolean vet[] = new boolean[8];
+
+    int valor = 2 ;
+
+    vet = converter.paraVetBoolean(valor);
+    System.out.println("result: " + converter.paraString(vet) + "\n");
+    valor = 3;
+    vet = converter.paraVetBoolean(valor);
+    System.out.println("result: " + converter.paraString(vet) + "\n");
+    valor = 4;
+    vet = converter.paraVetBoolean(valor);
+    System.out.println("result: " + converter.paraString(vet) + "\n");
+    valor = 5;
+    vet = converter.paraVetBoolean(valor);
+    System.out.println("result: " + converter.paraString(vet) + "\n");
+    
+    System.out.println("\n\n======== FIM  DO TESTE DO CONVERSOR PARA VET BOOLEAN =============\n");
+    
+  }
+
   public void testePortas(){ 
 
     // Instanciação das variaveis de cada porta logica
@@ -21,6 +46,8 @@ public class TesteGerais{
 
     boolean bit0False = false;  //variavel para representar o ZERO/FALSE
     boolean bit1True = true;    // variavel para representar o UM/TRUE
+
+    System.out.println("\n\n=============== TESTE DAS POTAS LOGICAS ====================\n");
 
     // Execução de cada porta logica enviando as 4 combinações possiveis e assim formando a tabela verdae 
     System.out.println("\nTabela verdade AND:");
@@ -58,7 +85,6 @@ public class TesteGerais{
     System.out.println("\n ============= FIM DO TESTE DE PORTAS =============" );      
   }
 
-  // Teste do mux, onde recebe 2 vetores do tipo boolean e deacordo com o "sel" ele retorna um dos vetores.
   public void testeMux(){
 
     Mux2p1 mux = new Mux2p1();  // instanciação do mux
@@ -74,6 +100,8 @@ public class TesteGerais{
                             // para selecionar de onde deve ser carregado o proximo endereço 
     
     boolean vetResultado[] = new boolean[8]; // Vetor que vai conter o vetor escolhido de acordo com a variavel "sel"
+
+    System.out.println("\n\n=============== TESTE DO MUX ====================\n");
 
     System.out.println("=========== CONTEUDO VETPCTESTE: ==========");
     for(int x = 0; x<8;x++){
@@ -98,10 +126,10 @@ public class TesteGerais{
     System.out.println("\n ============= FIM DO TESTE DO MUX =============" );
   }
 
-
   public void testeSomador2b(){
 
-     
+    System.out.println("\n\n=============== TESTE DO SOMADOR2B ====================\n");
+
     FullAdder2b somador = new FullAdder2b();
 
     boolean[] vet0 = new boolean[2];
@@ -136,6 +164,8 @@ public class TesteGerais{
   }
 
   public void testeSomador8b(){
+
+    System.out.println("\n\n=============== TESTE DO SOMADOR8B ====================\n");
 
     FullAdder8b somador = new FullAdder8b();
 
@@ -332,7 +362,100 @@ public class TesteGerais{
 
   } 
 
+  public void testeDecodificador(){
 
+    System.out.println("\n\n=============== TESTE DO DECODIFICADOR ====================\n");
+
+    Decodificador dec = new Decodificador();
+    boolean vetTeste[] = {true,false,true,false,true,true,true,true};
+    boolean vetResul[] = new boolean[4];
+
+    vetResul = dec.executar(vetTeste,true);
+
+    System.out.println("\n Resultado: " + vetResul[0] + " " + vetResul[1] + " " + vetResul[2] + " " + vetResul[3] + "\n");
+   
+    System.out.println("\n\n=============== FIM  DO TESTE DO DECODIFICADOR ====================\n");
+
+  }
+
+  public void testeULA(){
+
+    System.out.println("\n\n=============== TESTE DA ULA ====================\n");
+
+    Conversor converter = new Conversor();
+    ULA ula = new ULA();
+    boolean vetSel[] = new boolean[3];
+    boolean vetAc[] = new boolean[8];
+    boolean vetRdm[] = new boolean[8];
+    boolean vetResult[] = new boolean[8];
+
+
+    System.out.println(" >>>>> OPERAÇÃO DE SOMA: 5 + 27 = 32 (0010 0000) :");
+    vetSel[0] = false; vetSel[1] = false; vetSel[2] = false; // set sel para soma 
+
+    vetAc[0] = false; vetAc[1] = false; vetAc[2] = false; vetAc[3] = false;
+    vetAc[4] = false; vetAc[5] = true; vetAc[6] = false; vetAc[7] = true; // valor 5 
+
+    vetRdm[0] = false; vetRdm[1] = false; vetRdm[2] = false; vetRdm[3] = true;
+    vetRdm[4] = true; vetRdm[5] = false; vetRdm[6] = true; vetRdm[7] = true; // valor 27
+
+    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+
+    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+
+    System.out.println(" >>>>> OPERAÇÃO AND: 1111 AND 0110 = 0000 0110 :");
+    vetSel[0] = false; vetSel[1] = false; vetSel[2] = true; // set sel para AND
+
+    vetAc[0] = false; vetAc[1] = false; vetAc[2] = false; vetAc[3] = false;
+    vetAc[4] = true; vetAc[5] = true; vetAc[6] = true; vetAc[7] = true; 
+
+    vetRdm[0] = false; vetRdm[1] = false; vetRdm[2] = false; vetRdm[3] = false;
+    vetRdm[4] = false; vetRdm[5] = true; vetRdm[6] = true; vetRdm[7] = false; 
+
+    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+
+    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+
+    System.out.println(" >>>>> OPERAÇÃO OR: 0010 1001 AND 1010 0110 = 1010 1111 :");
+    vetSel[0] = false; vetSel[1] = true; vetSel[2] = false; // set sel para OR
+
+    vetAc[0] = false; vetAc[1] = false; vetAc[2] = true; vetAc[3] = false;
+    vetAc[4] = true; vetAc[5] = false; vetAc[6] = false; vetAc[7] = true; 
+
+    vetRdm[0] = true; vetRdm[1] = false; vetRdm[2] = true; vetRdm[3] = false;
+    vetRdm[4] = false; vetRdm[5] = true; vetRdm[6] = true; vetRdm[7] = false; 
+
+    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+
+    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+
+    System.out.println(" >>>>> OPERAÇÃO NOT: 0011 1100 = 1100 0011 :");
+    vetSel[0] = false; vetSel[1] = true; vetSel[2] = true; // set sel para NOT
+
+    vetAc[0] = false; vetAc[1] = false; vetAc[2] = true; vetAc[3] = true;
+    vetAc[4] = true; vetAc[5] = true; vetAc[6] = false; vetAc[7] = false; 
+ 
+    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+
+    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+
+
+    
+    
+    System.out.println(" >>>>> OPERAÇÃO CARREGA O RDM: valor do RDM = 1111 1111");
+    vetSel[0] = true; vetSel[1] = false; vetSel[2] = false; // set sel para CAREGA RDM
+
+    vetRdm[0] = true; vetRdm[1] = true; vetRdm[2] = true; vetRdm[3] = true;
+    vetRdm[4] = true; vetRdm[5] = true; vetRdm[6] = true; vetRdm[7] = true; 
+
+    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+
+    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+
+
+
+    System.out.println("\n\n=============== FIM DO TESTE DA ULA ====================\n");
+  }
 
 
 
