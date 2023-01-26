@@ -6,6 +6,7 @@ import estruturasBasicas.FullAdder8b;
 import estruturasBasicas.Port_And;
 import estruturasBasicas.Port_Not;
 import estruturasBasicas.Port_Or;
+import estruturasBasicas.Flip_Flop_d;
 
 public class ULA {
 
@@ -14,12 +15,13 @@ public class ULA {
     Port_And and = new Port_And();
     Port_Or or = new Port_Or();
     Port_Not not = new Port_Not();
+    Flip_Flop_d flagN = new Flip_Flop_d();
+    Flip_Flop_d flagZ = new Flip_Flop_d();
 
 
     public boolean[] executar(boolean[] SelULA, boolean vetAC[], boolean[] vetRDM){
 
-        boolean result[] = new boolean[8];
-
+        boolean result[] = {false,false,false,false,false,false,false,false};
 
         int sel = converter.paraInteiro(SelULA);
 
@@ -50,8 +52,32 @@ public class ULA {
                     System.out.println("Erro na seleção da operação da ula");
                     break;
             }
+            
+            int res = converter.paraInteiro(result);
+
+            if(res == 0){
+                flagZ.executar(true,true);
+            }else{
+                flagZ.executar(false,true);
+            }
+
+            if(result[0] == true){
+                flagN.executar(true,true);
+            }else{
+                flagN.executar(false,true);
+            }
 
         return result; 
-    } 
+    }
+
+    public boolean getN(){
+        boolean n = flagN.executar(false,false);
+        return n;
+    }
+
+    public boolean getZ(){
+        boolean z = flagZ.executar(false,false);
+        return z;
+    }
 
 }

@@ -401,7 +401,8 @@ public class TesteGerais{
 
     vetResult = ula.executar(vetSel, vetAc, vetRdm);
 
-    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+    System.out.println("\n Resultado: " + converter.paraString(vetResult));
+    System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
 
     System.out.println(" >>>>> OPERAÇÃO AND: 1111 AND 0110 = 0000 0110 :");
     vetSel[0] = false; vetSel[1] = false; vetSel[2] = true; // set sel para AND
@@ -414,9 +415,10 @@ public class TesteGerais{
 
     vetResult = ula.executar(vetSel, vetAc, vetRdm);
 
-    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+    System.out.println("\n Resultado: " + converter.paraString(vetResult));
+    System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
 
-    System.out.println(" >>>>> OPERAÇÃO OR: 0010 1001 AND 1010 0110 = 1010 1111 :");
+    System.out.println(" >>>>> OPERAÇÃO OR: 0010 1001 OR 1010 0110 = 1010 1111 :");
     vetSel[0] = false; vetSel[1] = true; vetSel[2] = false; // set sel para OR
 
     vetAc[0] = false; vetAc[1] = false; vetAc[2] = true; vetAc[3] = false;
@@ -427,7 +429,8 @@ public class TesteGerais{
 
     vetResult = ula.executar(vetSel, vetAc, vetRdm);
 
-    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+    System.out.println("\n Resultado: " + converter.paraString(vetResult));
+    System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
 
     System.out.println(" >>>>> OPERAÇÃO NOT: 0011 1100 = 1100 0011 :");
     vetSel[0] = false; vetSel[1] = true; vetSel[2] = true; // set sel para NOT
@@ -437,9 +440,8 @@ public class TesteGerais{
  
     vetResult = ula.executar(vetSel, vetAc, vetRdm);
 
-    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
-
-
+    System.out.println("\n Resultado: " + converter.paraString(vetResult));
+    System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
     
     
     System.out.println(" >>>>> OPERAÇÃO CARREGA O RDM: valor do RDM = 1111 1111");
@@ -450,7 +452,19 @@ public class TesteGerais{
 
     vetResult = ula.executar(vetSel, vetAc, vetRdm);
 
-    System.out.println("\n Resultado: " + converter.paraString(vetResult) + "\n\n");
+    System.out.println("\n Resultado: " + converter.paraString(vetResult));
+    System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
+
+    System.out.println(" >>>>> OPERAÇÃO NOT PARA TESTAR FLAG Z: 1111 1111 = 0000 0000 :");
+    vetSel[0] = false; vetSel[1] = true; vetSel[2] = true; // set sel para NOT
+
+    vetAc[0] = true; vetAc[1] = true; vetAc[2] = true; vetAc[3] = true;
+    vetAc[4] = true; vetAc[5] = true; vetAc[6] = true; vetAc[7] = true; 
+ 
+    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+
+    System.out.println("\n Resultado: " + converter.paraString(vetResult));
+    System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
 
 
 
