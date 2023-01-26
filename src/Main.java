@@ -1,5 +1,6 @@
 import elementosDaArquitetura.Memoria;
 import estruturasBasicas.Conversor;
+import testes.TesteGerais;
 
 //import java.util.Arrays;
 

@@ -8,7 +8,7 @@ public class Mux2p1{
 
   public boolean[] executar(boolean vetPC[], boolean vetRDM[], boolean sel){
 
-    boolean vetResultante[] = new boolean[8];
+    boolean vetResultante[] = {false,false,false,false,false,false,false,false};
     
     if(sel == false){
 

@@ -1,3 +1,4 @@
+package testes;
 // classe usada para realizar testes das outras classes.
 
 
@@ -384,6 +385,7 @@ public class TesteGerais{
 
     Conversor converter = new Conversor();
     ULA ula = new ULA();
+    boolean cargaNZ = true;
     boolean vetSel[] = new boolean[3];
     boolean vetAc[] = new boolean[8];
     boolean vetRdm[] = new boolean[8];
@@ -399,7 +401,7 @@ public class TesteGerais{
     vetRdm[0] = false; vetRdm[1] = false; vetRdm[2] = false; vetRdm[3] = true;
     vetRdm[4] = true; vetRdm[5] = false; vetRdm[6] = true; vetRdm[7] = true; // valor 27
 
-    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+    vetResult = ula.executar(vetSel, cargaNZ, vetAc, vetRdm);
 
     System.out.println("\n Resultado: " + converter.paraString(vetResult));
     System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
@@ -413,7 +415,7 @@ public class TesteGerais{
     vetRdm[0] = false; vetRdm[1] = false; vetRdm[2] = false; vetRdm[3] = false;
     vetRdm[4] = false; vetRdm[5] = true; vetRdm[6] = true; vetRdm[7] = false; 
 
-    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+    vetResult = ula.executar(vetSel, cargaNZ, vetAc, vetRdm);
 
     System.out.println("\n Resultado: " + converter.paraString(vetResult));
     System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
@@ -427,7 +429,7 @@ public class TesteGerais{
     vetRdm[0] = true; vetRdm[1] = false; vetRdm[2] = true; vetRdm[3] = false;
     vetRdm[4] = false; vetRdm[5] = true; vetRdm[6] = true; vetRdm[7] = false; 
 
-    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+    vetResult = ula.executar(vetSel, cargaNZ, vetAc, vetRdm);
 
     System.out.println("\n Resultado: " + converter.paraString(vetResult));
     System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
@@ -438,7 +440,7 @@ public class TesteGerais{
     vetAc[0] = false; vetAc[1] = false; vetAc[2] = true; vetAc[3] = true;
     vetAc[4] = true; vetAc[5] = true; vetAc[6] = false; vetAc[7] = false; 
  
-    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+    vetResult = ula.executar(vetSel, cargaNZ, vetAc, vetRdm);
 
     System.out.println("\n Resultado: " + converter.paraString(vetResult));
     System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
@@ -450,7 +452,7 @@ public class TesteGerais{
     vetRdm[0] = true; vetRdm[1] = true; vetRdm[2] = true; vetRdm[3] = true;
     vetRdm[4] = true; vetRdm[5] = true; vetRdm[6] = true; vetRdm[7] = true; 
 
-    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+    vetResult = ula.executar(vetSel, cargaNZ, vetAc, vetRdm);
 
     System.out.println("\n Resultado: " + converter.paraString(vetResult));
     System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");
@@ -461,7 +463,7 @@ public class TesteGerais{
     vetAc[0] = true; vetAc[1] = true; vetAc[2] = true; vetAc[3] = true;
     vetAc[4] = true; vetAc[5] = true; vetAc[6] = true; vetAc[7] = true; 
  
-    vetResult = ula.executar(vetSel, vetAc, vetRdm);
+    vetResult = ula.executar(vetSel, cargaNZ, vetAc, vetRdm);
 
     System.out.println("\n Resultado: " + converter.paraString(vetResult));
     System.out.println("\n Valor de N: " + ula.getN() + " | Valor de Z: " + ula.getZ() + "\n\n");

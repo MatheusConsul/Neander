@@ -9,7 +9,7 @@ public class Ac {
 
     public boolean[] executar(boolean[] dadoULA, boolean clk, boolean cargaAC) { 
 
-        boolean[] vetValArmazenado = new boolean[8];
+        boolean[] vetValArmazenado = {false,false,false,false,false,false,false,false};
 
         if(cargaAC == true){
             vetValArmazenado = registrador.executar(dadoULA, clk);

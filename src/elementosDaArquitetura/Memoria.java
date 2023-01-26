@@ -14,8 +14,6 @@ private Registrador8b memoria[] = new Registrador8b[256];
 Conversor converter = new Conversor(); // objeto usado para converte de boolean(binario) para inteiro
 
 
-
-  
 public Memoria(){
 
   // Construtor garante a inicialização da memoria com todas as 
@@ -34,7 +32,7 @@ public Memoria(){
 
 public boolean[] executar(boolean read, boolean write, boolean posicaoREM[], boolean dadoRDM[]){
   Registrador8b resgistrador = new Registrador8b();
-  boolean vetDado[] = new boolean[8];
+  boolean vetDado[] = {false,false,false,false,false,false,false,false};
 
   if(read == true){
 

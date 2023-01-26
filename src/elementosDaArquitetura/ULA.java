@@ -19,11 +19,11 @@ public class ULA {
     Flip_Flop_d flagZ = new Flip_Flop_d();
 
 
-    public boolean[] executar(boolean[] SelULA, boolean vetAC[], boolean[] vetRDM){
+    public boolean[] executar(boolean[] selULA, boolean cargaNZ, boolean vetAC[], boolean[] vetRDM){
 
         boolean result[] = {false,false,false,false,false,false,false,false};
 
-        int sel = converter.paraInteiro(SelULA);
+        int sel = converter.paraInteiro(selULA);
 
             switch(sel){
 
@@ -53,19 +53,24 @@ public class ULA {
                     break;
             }
             
-            int res = converter.paraInteiro(result);
+            if(cargaNZ == true){
 
-            if(res == 0){
-                flagZ.executar(true,true);
-            }else{
-                flagZ.executar(false,true);
-            }
+                int res = converter.paraInteiro(result);
 
-            if(result[0] == true){
-                flagN.executar(true,true);
-            }else{
-                flagN.executar(false,true);
+                if(res == 0){
+                    flagZ.executar(true,true);
+                }else{
+                    flagZ.executar(false,true);
+                }
+
+                if(result[0] == true){
+                    flagN.executar(true,true);
+                }else{
+                    flagN.executar(false,true);
+                }
+
             }
+            
 
         return result; 
     }
