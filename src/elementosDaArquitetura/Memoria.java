@@ -47,7 +47,7 @@ public boolean[] executar(boolean read, boolean write, boolean posicaoREM[], boo
     memoria[posicao] = resgistrador; // agora grava o registrador na memoria 
 
   }else{
-    System.out.println("\n\n ERRO NA MEMORIA");
+    System.out.println("\n\n opreração not");
   }
 
 

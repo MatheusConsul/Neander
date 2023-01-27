@@ -99,6 +99,7 @@ public class SimuladorNeander {
 
             }else{  // condição falsa do JMP 
                 returnPC = pc.executar(cargaPC, incrementaPC, returnRDM );
+                read = true;
             }
 
             returnULA = ula.executar(selUla, cargaNZ, returnAC, returnRDM);
@@ -110,11 +111,7 @@ public class SimuladorNeander {
         }while(!hlt);
 
 
-
-
     }
 
 
-
-    
 }

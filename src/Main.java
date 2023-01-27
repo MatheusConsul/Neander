@@ -1,19 +1,14 @@
-import elementosDaArquitetura.Memoria;
-import estruturasBasicas.Conversor;
-import testes.TesteGerais;
 
-//import java.util.Arrays;
+import testes.TesteGerais;
 
 class Main {
   
   public static void main(final String[] args) {
 
-    // Instanciação do objeto teste, usado para realizar os teste de funcionamento das classes 
     TesteGerais teste = new TesteGerais();  
 
     System.out.println("\n\n ========== TESTES: TESTES: TESTES: ==========");
 
-    
     //teste.testePortas();
     //teste.testeMux();
     //teste.testeSomador2b();
