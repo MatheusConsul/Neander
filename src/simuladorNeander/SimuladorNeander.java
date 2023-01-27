@@ -8,21 +8,21 @@ public class SimuladorNeander {
 
     Conversor converter = new Conversor();
 
-    UnidadeControle uControle = new UnidadeControle();
-    Decodificador decodificador = new Decodificador();
-    Memoria memoria = new Memoria();
-    Mux2p1 mux = new Mux2p1();
-    RDM rdm = new RDM();
-    REM rem = new REM();
-    ULA ula = new ULA();
-    PC pc = new PC();
-    Ac ac = new Ac();
-    
-
-
     public void executar(){
 
+        // Elementos da Arquitetura do Neander
+        UnidadeControle uControle = new UnidadeControle();
+        Decodificador decodificador = new Decodificador();
+        Memoria memoria = new Memoria();
+        Mux2p1 mux = new Mux2p1();
+        RDM rdm = new RDM();
+        REM rem = new REM();
+        ULA ula = new ULA();
+        PC pc = new PC();
+        Ac ac = new Ac();
+
         // sinais de controle
+        int contPC = 0;
         boolean clock = true;
         boolean hlt = false;
         boolean flagN = ula.getN();
@@ -50,9 +50,27 @@ public class SimuladorNeander {
         boolean returnAC[] = new boolean[8];
         boolean returnUniControle[] = new boolean[13];
 
-
+        
+        System.out.println(" >>>>>>> TESTE DO SIMULADOR COMPLETO: <<<<<<<<");
+        
+        
+        boolean posicaoREM[] = new boolean[8];
+        boolean dadoMemoria[] = new boolean[8];
+        boolean dadoRDM[] = {true,true,false,false,true,true,false,false};
+        
+        System.out.println(" >>>MEMORIA COMPLETA ANTES DA EXECUÇÃO: ");
+        for(int i =0; i<20;i++){
+            posicaoREM = converter.paraVetBoolean(i);
+            dadoMemoria = memoria.executar(true,false, posicaoREM,dadoRDM);
+            System.out.println(" POSIÇÃO " + i + " : " + converter.paraInteiro(dadoMemoria));
+        
+        }
+        System.out.println(" >>>>>>>>>>>>>>> FIM MEMORIA ");
+        int z =0;
 
         do{
+            
+            System.out.println(" ########### DENTRO DO DO WHILE HLT>>: "+ hlt);
 
             returnPC = pc.executar(cargaPC, incrementaPC,returnRDM);
             returnMux = mux.executar(returnPC, returnRDM, sel);
@@ -77,6 +95,21 @@ public class SimuladorNeander {
             cargaPC =       returnUniControle[11];
             incrementaPC =  returnUniControle[12];
             hlt =           returnUniControle[13];
+            System.out.println("selUla[0] : " + selUla[0]);
+            System.out.println("selUla[1] : " + selUla[1]);
+            System.out.println("selUla[2] : " + selUla[2]);
+            System.out.println("cargaNZ : " + cargaNZ);
+            System.out.println("cargaAC : " + cargaAC);
+            System.out.println("cargaRI : " + cargaRI);
+            System.out.println("cargaRDM : " + cargaRDM);
+            System.out.println("write : " + write);
+            System.out.println("read : " + read);
+            System.out.println("cargaREM : " + cargaREM);
+            System.out.println("sel : " + sel);
+            System.out.println("cargaPC : " + cargaPC);
+            System.out.println("incrementaPC : " + incrementaPC);
+            System.out.println(" hlt : " +  hlt);
+
 
             if(read == true){ // carregar dado da memoria
 
@@ -84,15 +117,28 @@ public class SimuladorNeander {
                 returnMux = mux.executar(returnPC, returnRDM, sel);
                 returnREM = rem.executar(returnMux,clock,cargaREM);
                 returnMemoria = memoria.executar(read, write, returnREM, returnRDM);
+                
                 returnRDM = rdm.executar(returnMemoria, clock, cargaRDM);
+                returnMux = mux.executar(returnPC, returnRDM, true);
+                returnREM = rem.executar(returnMux,clock,cargaREM);
+                returnMemoria = memoria.executar(read, write, returnREM, returnRDM);
+                returnRDM = rdm.executar(returnMemoria, clock, cargaRDM);
+
+                System.out.println(" ++++++ Leitura na memoria posi: " + converter.paraInteiro(returnREM) +  " dado: " +converter.paraInteiro(returnRDM));
 
             }else if(write == true){ // salvar dado na memoria
 
                 returnPC = pc.executar(cargaPC, incrementaPC, returnRDM );
                 returnMux = mux.executar(returnPC, returnRDM, sel);
                 returnREM = rem.executar(returnMux,clock,cargaREM);
+                returnMemoria = memoria.executar(true, false, returnREM, returnRDM);
+                returnRDM = rdm.executar(returnMemoria, clock, cargaRDM);
+                returnMux = mux.executar(returnPC, returnRDM, true);
+                returnREM = rem.executar(returnMux,clock,cargaREM);
                 returnRDM = rdm.executar(returnAC, clock, cargaRDM);
+                System.out.println(" ++++++ Escrita na memoria posi: " + converter.paraInteiro(returnREM) +  " dado: " +converter.paraInteiro(returnRDM));
                 returnMemoria = memoria.executar(read, write, returnREM, returnRDM);
+                read = true; write =false;
 
             }else if(selUla[0]==false && selUla[1]== true && selUla[2]== true){ // operação NOT
                 // Não incrementa PC para não pular a proxima instrução
@@ -106,9 +152,22 @@ public class SimuladorNeander {
             flagN = ula.getN();
             flagZ = ula.getZ();
             returnAC = ac.executar(returnULA, clock, cargaAC);
-
-
+            System.out.println("VAAAAAlorr do AC: " + converter.paraInteiro(returnAC));
+            System.out.println("VAAAAAlorr do ula: " + converter.paraInteiro(returnULA));
+            
+            contPC = converter.paraInteiro(returnPC);
+            System.out.println("contPC: " + contPC);
+            z++;
         }while(!hlt);
+
+        System.out.println(" >>>MEMORIA COMPLETA DDEEPOISSSS DA EXECUÇÃO: ");
+        for(int i =0; i<20;i++){
+            posicaoREM = converter.paraVetBoolean(i);
+            dadoMemoria = memoria.executar(true,false, posicaoREM,dadoRDM);
+            System.out.println(" POSIÇÃO " + i + " : " + converter.paraInteiro(dadoMemoria));
+        
+        }
+        System.out.println(" >>>>>>>>>>>>>>> FIM MEMORIA ");
 
 
     }

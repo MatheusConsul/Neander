@@ -13,10 +13,13 @@ public class UnidadeControle {
 
 
     int op_code = converter.paraInteiro(opCode);
+    System.out.println(" ########### OPCODE DA UC boolean: "+ opCode[0]+opCode[1]+opCode[2]+opCode[3]);
+    System.out.println(" ########### OPCODE DA UC: "+ op_code);
 
     switch(op_code){
 
       case 0:   //NOP
+      System.out.println(" ########### nop");
         flagsDeControle[0]  = false;    // selUla[0]
         flagsDeControle[1]  = false;    // selUla[1]
         flagsDeControle[2]  = false;    // selUla[2]
@@ -34,11 +37,12 @@ public class UnidadeControle {
 
         break;
       case 1:   //STA
+      System.out.println(" ########### store");
         flagsDeControle[0]  = false;    // selUla[0]
         flagsDeControle[1]  = false;    // selUla[1]
         flagsDeControle[2]  = false;    // selUla[2]
         flagsDeControle[3]  = false;    // cargaNZ
-        flagsDeControle[4]  = false;    // CargaAC
+        flagsDeControle[4]  = true;    // CargaAC
         flagsDeControle[5]  = true;    // CargaRI
         flagsDeControle[6]  = true;    // cargaRDM
         flagsDeControle[7]  = true;    // write (memoria)
@@ -51,6 +55,7 @@ public class UnidadeControle {
 
         break;
       case 2:   //LDA
+      System.out.println(" ########### LDA");
         flagsDeControle[0]  = true;    // selUla[0]
         flagsDeControle[1]  = false;    // selUla[1]
         flagsDeControle[2]  = false;    // selUla[2]
@@ -68,6 +73,7 @@ public class UnidadeControle {
 
         break;
       case 3:   //ADD
+      System.out.println(" ########### add");
         flagsDeControle[0]  = false;    // selUla[0]
         flagsDeControle[1]  = false;    // selUla[1]
         flagsDeControle[2]  = false;    // selUla[2]

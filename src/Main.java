@@ -1,11 +1,13 @@
 
 import testes.TesteGerais;
+import testes.TesteNeander;
 
 class Main {
   
   public static void main(final String[] args) {
 
     TesteGerais teste = new TesteGerais();  
+    TesteNeander testeGeral = new TesteNeander();
 
     System.out.println("\n\n ========== TESTES: TESTES: TESTES: ==========");
 
@@ -18,7 +20,9 @@ class Main {
     //teste.testeREM();
     //teste.testeMemoria();
     //teste.testeDecodificador();
-    teste.testeULA();
+    //teste.testeULA();
+
+    testeGeral.testeNeander();
 
     
   }
