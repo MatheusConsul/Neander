@@ -1,5 +1,5 @@
 
-import simuladorNeander.AppTela;
+import simuladorNeander.TelaSimulador;
 import testes.TesteGerais;
 import testes.TesteNeander;
 
@@ -26,7 +26,7 @@ class Main {
 
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-          new AppTela().setVisible(true);
+          new TelaSimulador().setVisible(true);
       }
   });
 
