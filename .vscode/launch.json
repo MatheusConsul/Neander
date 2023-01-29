@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TelaSimulador",
+            "request": "launch",
+            "mainClass": "simuladorNeander.TelaSimulador",
+            "projectName": "Neander_6368458f"
+        },
+        {
+            "type": "java",
             "name": "Launch AppTela",
             "request": "launch",
             "mainClass": "simuladorNeander.AppTela",

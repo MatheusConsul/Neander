@@ -9,8 +9,8 @@ public class TelaSimulador extends javax.swing.JFrame {
     private Conversor converter = new Conversor();
     private int posMemoInstru = 0;
     private int posMemoDados = 128;
-    String atualizaTxtInstrucao = "";
-    String atualizaTxtDados = "";
+    private String atualizaTxtInstrucao = "";
+    private String atualizaTxtDados = "";
 
 
     public TelaSimulador() {
@@ -84,6 +84,14 @@ public class TelaSimulador extends javax.swing.JFrame {
             }
         });
 
+        btnReiniciar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        btnReiniciar.setText("Reiniciar Simulador");
+        btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarActionPerformed(evt);
+            }
+        });
+
         txtFieldInstru.setText("00");
         txtFieldInstru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,8 +116,7 @@ public class TelaSimulador extends javax.swing.JFrame {
 
         lblInformcao3.setText("Para pular uma posição de memoria apenas aperte enter  ");
 
-        btnReiniciar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        btnReiniciar.setText("Reiniciar Simulador");
+        
 
         txtCodInstrucoes.setEditable(false);
         txtCodInstrucoes.setColumns(20);
@@ -319,7 +326,7 @@ public class TelaSimulador extends javax.swing.JFrame {
         vetDado = converter.paraVetBoolean(dado);
         simuladorNeander.carregarMemoria(vetDado, posMemoDados);
         
-        txtFieldInstru.setText("");
+        txtFieldDados.setText("");
 
         atualizaTxtDados += "Posição "+ posMemoDados + ": "+ dados + "\n";
         
@@ -332,7 +339,19 @@ public class TelaSimulador extends javax.swing.JFrame {
 
     private void btnRodarPassoActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-    }                                             
+    }          
+    
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {
+        simuladorNeander.reset();
+        posMemoInstru = 0;
+        posMemoDados = 128;
+        atualizaTxtInstrucao = "";
+        atualizaTxtDados = "";
+        lblPosDados.setText("Posição: "+posMemoDados); 
+        lblPosIns.setText("Posição: "+posMemoInstru);
+        txtInstrucao.setText(simuladorNeander.getMemoInstr());
+        txtDados.setText(simuladorNeander.getMemoDados());
+    }      
 
     private void btnRodarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         if(simuladorNeander.executarCompleto()){
