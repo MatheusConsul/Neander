@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch AppTela",
+            "request": "launch",
+            "mainClass": "simuladorNeander.AppTela",
+            "projectName": "Neander_6368458f"
+        },
+        {
+            "type": "java",
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "main.Main",

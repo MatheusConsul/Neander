@@ -1,4 +1,5 @@
 
+import simuladorNeander.AppTela;
 import testes.TesteGerais;
 import testes.TesteNeander;
 
@@ -21,8 +22,15 @@ class Main {
     //teste.testeMemoria();
     //teste.testeDecodificador();
     //teste.testeULA();
+    //testeGeral.testeNeander();
 
-    testeGeral.testeNeander();
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      public void run() {
+          new AppTela().setVisible(true);
+      }
+  });
+
+
 
     
   }

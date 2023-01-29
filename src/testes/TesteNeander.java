@@ -10,7 +10,7 @@ public class TesteNeander {
 
         SimuladorNeander neander = new SimuladorNeander();
 
-        neander.executar();
+        neander.executarCompleto();
 
 
     }

@@ -6,20 +6,20 @@ import estruturasBasicas.Conversor;
 
 public class SimuladorNeander {
 
-    Conversor converter = new Conversor();
+    private Conversor converter = new Conversor();
 
-    public void executar(){
+    // Elementos da Arquitetura do Neander
+    private UnidadeControle uControle = new UnidadeControle();
+    private Decodificador decodificador = new Decodificador();
+    private Memoria memoria = new Memoria();
+    private Mux2p1 mux = new Mux2p1();
+    private RDM rdm = new RDM();
+    private REM rem = new REM();
+    private ULA ula = new ULA();
+    private PC pc = new PC();
+    private Ac ac = new Ac();
 
-        // Elementos da Arquitetura do Neander
-        UnidadeControle uControle = new UnidadeControle();
-        Decodificador decodificador = new Decodificador();
-        Memoria memoria = new Memoria();
-        Mux2p1 mux = new Mux2p1();
-        RDM rdm = new RDM();
-        REM rem = new REM();
-        ULA ula = new ULA();
-        PC pc = new PC();
-        Ac ac = new Ac();
+    public boolean executarCompleto(){
 
         // sinais de controle
         int contPC = 0;
@@ -65,8 +65,11 @@ public class SimuladorNeander {
             System.out.println(" POSIÇÃO " + i + " : " + converter.paraInteiro(dadoMemoria));
         
         }
+
+
+        
         System.out.println(" >>>>>>>>>>>>>>> FIM MEMORIA ");
-        int z =0;
+        //int z =0;
 
         do{
             
@@ -157,8 +160,8 @@ public class SimuladorNeander {
             
             contPC = converter.paraInteiro(returnPC);
             System.out.println("contPC: " + contPC);
-            z++;
-        }while(!hlt);
+            
+        }while(!hlt && contPC < 255);
 
         System.out.println(" >>>MEMORIA COMPLETA DDEEPOISSSS DA EXECUÇÃO: ");
         for(int i =0; i<20;i++){
@@ -169,7 +172,47 @@ public class SimuladorNeander {
         }
         System.out.println(" >>>>>>>>>>>>>>> FIM MEMORIA ");
 
+        return true;
+    }
 
+
+    public void carregarMemoria(boolean vetInstrucoesDados[], int posicaoMemoria){
+
+        memoria.inserirDadosUser(vetInstrucoesDados, posicaoMemoria);
+    }
+
+    public String getMemoInstr(){
+
+        String txtFormat = "";
+        boolean posicaoMemo[] = new boolean[8];
+        boolean dadoMemoria[] = new boolean[8];
+        boolean dadoRDM[] = {true,true,false,false,true,true,false,false};
+
+        for(int i = 0; i < 128; i++){
+
+            posicaoMemo = converter.paraVetBoolean(i);
+            dadoMemoria = memoria.executar(true,false, posicaoMemo,dadoRDM);
+            txtFormat += " POSIÇÃO " + i + " : " + converter.paraInteiro(dadoMemoria) + "\n";
+        
+        }
+        return txtFormat;
+    }
+
+    public String getMemoDados(){
+
+        String txtFormat = "";
+        boolean posicaoMemo[] = new boolean[8];
+        boolean dadoMemoria[] = new boolean[8];
+        boolean dadoRDM[] = {true,true,false,false,true,true,false,false};
+
+        for(int i = 128; i < 256; i++){
+
+            posicaoMemo = converter.paraVetBoolean(i);
+            dadoMemoria = memoria.executar(true,false, posicaoMemo,dadoRDM);
+            txtFormat += " POSIÇÃO " + i + " : " + converter.paraInteiro(dadoMemoria) + "\n";
+        
+        }
+        return txtFormat;
     }
 
 
