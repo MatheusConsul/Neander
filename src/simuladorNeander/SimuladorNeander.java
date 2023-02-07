@@ -306,13 +306,13 @@ public class SimuladorNeander {
         
         boolean[] zero = {false,false,false,false,false,false,false,false};
         boolean[] ulaSel = {true,false,false};
-        boolean[] ret = new boolean[8]
+        boolean[] ret = new boolean[8];
         ret = pc.executar(true, false,zero);
-        ret = mux.executar(zero,zero,false);
+        /*ret = mux.executar(zero,zero,false);
         ret = rem.executar(zero,true,true);
         ret = rdm.executar(zero, true, true);
         ret = ula.executar(ulaSel, true, ret, zero);
-        ret = ac.executar(zero, true, true);
+        ret = ac.executar(zero, true, true);*/
 
     }
 
