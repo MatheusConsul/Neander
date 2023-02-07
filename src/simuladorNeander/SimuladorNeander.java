@@ -64,10 +64,10 @@ public class SimuladorNeander {
             contPC = converter.paraInteiro(returnPC);
             System.out.println(" >> PC: " + contPC);
             
-            if(write == true){
+            if(write == true){   // escrita na memoria
                 returnRDM = rdm.executar(returnAC, clock, cargaRDM);
                 returnMemoria = memoria.executar(read, write, returnREM, returnRDM);
-            }else{
+            }else{              // leitura na memoria
                 returnMemoria = memoria.executar(read, write, returnREM, returnRDM);
                 returnRDM = rdm.executar(returnMemoria, clock, cargaRDM);
             }
@@ -168,20 +168,22 @@ public class SimuladorNeander {
         
         boolean[] zero = {false,false,false,false,false,false,false,false};
         boolean[] ulaSel = {true,false,false};
-        boolean ret[] = new boolean[8];
+        boolean[] ret = new boolean[8];
 
         for(int i = 0; i < 256; i++){
-            carregarMemoria( zero, i);
+            carregarMemoria(zero, i);
         }
 
         ret = pc.executar(true, false,zero);
         ret = mux.executar(zero,zero,false);
         ret = rem.executar(zero,true,true);
         ret = rdm.executar(zero, true, true);
-        ret = ula.executar(ulaSel, true, zero, zero);
+        ret = ula.executar(ulaSel, true, ret, zero);
         ret = ac.executar(zero, true, true);
         
 
     }
 
+
 }
+

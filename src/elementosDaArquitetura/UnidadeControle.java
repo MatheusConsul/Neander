@@ -240,72 +240,106 @@ public class UnidadeControle {
       break;
       case 9:   //JN
 
-        if(flagN == true){
-          flagsDeControle[0]  = true;    // selUla[0]
-          flagsDeControle[1]  = false;    // selUla[1]
-          flagsDeControle[2]  = false;    // selUla[2]
-          flagsDeControle[3]  = false;    // cargaNZ
-          flagsDeControle[4]  = false;    // CargaAC
-          flagsDeControle[5]  = true;    // CargaRI
-          flagsDeControle[6]  = true;    // cargaRDM
-          flagsDeControle[7]  = false;    // write (memoria)
-          flagsDeControle[8]  = true;    // read (memoria)
-          flagsDeControle[9]  = true;    // cargaREM
-          flagsDeControle[10] = true;    // sel (Mux)
-          flagsDeControle[11] = true;    // cargaPC
-          flagsDeControle[12] = false;    // incrementaPC
-          flagsDeControle[13] = false;    // hlt
+        if( ciclo == 1){
+
+          System.out.println(" ########### JMP N ciclo 1 = " + ciclo);
+          flagsDeControle = buscaMemoria_1ciclo();
+
+        }else if(ciclo == 2){
+          System.out.println(" ########### JMP N ciclo 2 = " + ciclo + " Flag N = " + flagN);
+          if(flagN == true){
+            flagsDeControle[0]  = false;    // selUla[0]
+            flagsDeControle[1]  = false;    // selUla[1]
+            flagsDeControle[2]  = false;    // selUla[2]
+            flagsDeControle[3]  = false;    // cargaNZ
+            flagsDeControle[4]  = false;    // CargaAC
+            flagsDeControle[5]  = false;    // CargaRI
+            flagsDeControle[6]  = false;    // cargaRDM
+            flagsDeControle[7]  = false;    // write (memoria)
+            flagsDeControle[8]  = false;    // read (memoria)
+            flagsDeControle[9]  = false;    // cargaREM
+            flagsDeControle[10] = false;    // sel (Mux)
+            flagsDeControle[11] = true;     // cargaPC
+            flagsDeControle[12] = false;    // incrementaPC
+            flagsDeControle[13] = false;    // hlt
+            ciclo++;
+
+          }else{
+            flagsDeControle[0]  = false;    // selUla[0]
+            flagsDeControle[1]  = false;    // selUla[1]
+            flagsDeControle[2]  = false;    // selUla[2]
+            flagsDeControle[3]  = false;    // cargaNZ
+            flagsDeControle[4]  = false;    // CargaAC
+            flagsDeControle[5]  = false;    // CargaRI
+            flagsDeControle[6]  = false;    // cargaRDM
+            flagsDeControle[7]  = false;    // write (memoria)
+            flagsDeControle[8]  = false;    // read (memoria)
+            flagsDeControle[9]  = false;    // cargaREM
+            flagsDeControle[10] = false;    // sel (Mux)
+            flagsDeControle[11] = false;    // cargaPC
+            flagsDeControle[12] = false;    // incrementaPC
+            flagsDeControle[13] = false;    // hlt
+            ciclo++;
+          }
+          
         }else{
-          flagsDeControle[0]  = true;    // selUla[0]
-          flagsDeControle[1]  = false;    // selUla[1]
-          flagsDeControle[2]  = false;    // selUla[2]
-          flagsDeControle[3]  = false;    // cargaNZ
-          flagsDeControle[4]  = false;    // CargaAC
-          flagsDeControle[5]  = true;    // CargaRI
-          flagsDeControle[6]  = true;    // cargaRDM
-          flagsDeControle[7]  = false;    // write (memoria)
-          flagsDeControle[8]  = false;    // read (memoria)
-          flagsDeControle[9]  = true;    // cargaREM
-          flagsDeControle[10] = false;    // sel (Mux)
-          flagsDeControle[11] = false;    // cargaPC
-          flagsDeControle[12] = true;    // incrementaPC
-          flagsDeControle[13] = false;    // hlt
+
+          System.out.println(" ########### JMP N ciclo 3 = " + ciclo);
+          flagsDeControle = leitura_NOP_3ciclo();
+
         }
-        
+
         break;
       case 10:  //JZ
         
+      if( ciclo == 1){
+
+        System.out.println(" ########### JMP Z ciclo 1 = " + ciclo);
+        flagsDeControle = buscaMemoria_1ciclo();
+
+      }else if(ciclo == 2){
+        System.out.println(" ########### JMP Z ciclo 2 = " + ciclo + " Flag Z = " + flagZ);
         if(flagZ == true){
-          flagsDeControle[0]  = true;    // selUla[0]
+          flagsDeControle[0]  = false;    // selUla[0]
           flagsDeControle[1]  = false;    // selUla[1]
           flagsDeControle[2]  = false;    // selUla[2]
           flagsDeControle[3]  = false;    // cargaNZ
           flagsDeControle[4]  = false;    // CargaAC
-          flagsDeControle[5]  = true;    // CargaRI
-          flagsDeControle[6]  = true;    // cargaRDM
-          flagsDeControle[7]  = false;    // write (memoria)
-          flagsDeControle[8]  = true;    // read (memoria)
-          flagsDeControle[9]  = true;    // cargaREM
-          flagsDeControle[10] = true;    // sel (Mux)
-          flagsDeControle[11] = true;    // cargaPC
-          flagsDeControle[12] = false;    // incrementaPC
-          flagsDeControle[13] = false;    // hlt
-        }else{
-          flagsDeControle[0]  = true;    // selUla[0]
-          flagsDeControle[1]  = false;    // selUla[1]
-          flagsDeControle[2]  = false;    // selUla[2]
-          flagsDeControle[3]  = false;    // cargaNZ
-          flagsDeControle[4]  = false;    // CargaAC
-          flagsDeControle[5]  = true;    // CargaRI
-          flagsDeControle[6]  = true;    // cargaRDM
+          flagsDeControle[5]  = false;    // CargaRI
+          flagsDeControle[6]  = false;    // cargaRDM
           flagsDeControle[7]  = false;    // write (memoria)
           flagsDeControle[8]  = false;    // read (memoria)
-          flagsDeControle[9]  = true;    // cargaREM
+          flagsDeControle[9]  = false;    // cargaREM
+          flagsDeControle[10] = false;    // sel (Mux)
+          flagsDeControle[11] = true;     // cargaPC
+          flagsDeControle[12] = false;    // incrementaPC
+          flagsDeControle[13] = false;    // hlt
+          ciclo++;
+
+        }else{
+          flagsDeControle[0]  = false;    // selUla[0]
+          flagsDeControle[1]  = false;    // selUla[1]
+          flagsDeControle[2]  = false;    // selUla[2]
+          flagsDeControle[3]  = false;    // cargaNZ
+          flagsDeControle[4]  = false;    // CargaAC
+          flagsDeControle[5]  = false;    // CargaRI
+          flagsDeControle[6]  = false;    // cargaRDM
+          flagsDeControle[7]  = false;    // write (memoria)
+          flagsDeControle[8]  = false;    // read (memoria)
+          flagsDeControle[9]  = false;    // cargaREM
           flagsDeControle[10] = false;    // sel (Mux)
           flagsDeControle[11] = false;    // cargaPC
-          flagsDeControle[12] = true;    // incrementaPC
+          flagsDeControle[12] = false;    // incrementaPC
           flagsDeControle[13] = false;    // hlt
+          ciclo++;
         }
+        
+      }else{
+
+        System.out.println(" ########### JMP Z ciclo 3 = " + ciclo);
+        flagsDeControle = leitura_NOP_3ciclo();
+
+      }
 
         break;
       case 15:  //HLT
@@ -362,7 +396,7 @@ public class UnidadeControle {
     flagsDeControle[0]  = false;    // selUla[0]
     flagsDeControle[1]  = false;    // selUla[1]
     flagsDeControle[2]  = false;    // selUla[2]
-    flagsDeControle[3]  = true;    // cargaNZ
+    flagsDeControle[3]  = false;    // cargaNZ ------------------------
     flagsDeControle[4]  = false;    // CargaAC
     flagsDeControle[5]  = true;    // CargaRI
     flagsDeControle[6]  = true;    // cargaRDM

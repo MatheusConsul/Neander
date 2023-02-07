@@ -28,7 +28,7 @@ class Main {
       public void run() {
           new TelaSimulador().setVisible(true);
       }
-  });
+    });
 
 
 
