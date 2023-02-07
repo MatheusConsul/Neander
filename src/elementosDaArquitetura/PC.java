@@ -14,6 +14,7 @@ public class PC{
   
   public PC(){
     Arrays.fill(contador,false); // comando para setar todo o vetor com o valor false
+    Arrays.fill(contadorAux,false); // comando para setar todo o vetor com o valor false
   }
   
   public boolean[] executar(boolean cargaPC, boolean incrementaPC, boolean vetRDM[]){
@@ -24,6 +25,8 @@ public class PC{
     }else if(incrementaPC == true){
       contadorAux = contador;
       contador = somador.executar(contador, umBinario);
+    }else{
+      contadorAux = contador;
     }
     
     return contadorAux;

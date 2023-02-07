@@ -127,6 +127,13 @@ public class TelaSimulador extends javax.swing.JFrame {
 
         btnZerarPc.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         btnZerarPc.setText("Zerar PC");
+        btnZerarPc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZerarPcActionPerformed(evt);
+            }
+        });
+
+        
 
         txtInstrucao.setEditable(false);
         txtInstrucao.setColumns(10);
@@ -338,7 +345,11 @@ public class TelaSimulador extends javax.swing.JFrame {
     }                                             
 
     private void btnRodarPassoActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+        if(simuladorNeander.executarPassoAPasso()){
+            txtInstrucao.setText(simuladorNeander.getMemoInstr());
+            txtDados.setText(simuladorNeander.getMemoDados());
+        }  
+
     }          
     
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,7 +369,11 @@ public class TelaSimulador extends javax.swing.JFrame {
             txtInstrucao.setText(simuladorNeander.getMemoInstr());
             txtDados.setText(simuladorNeander.getMemoDados());
         }
-    }                                        
+    }   
+    
+    private void btnZerarPcActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        simuladorNeander.zeraPC();
+    }   
 
     /**
      * @param args the command line arguments

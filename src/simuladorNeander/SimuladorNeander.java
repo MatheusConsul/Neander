@@ -18,6 +18,17 @@ public class SimuladorNeander {
     private ULA ula = new ULA();
     private PC pc = new PC();
     private Ac ac = new Ac();
+    
+    // Variaveis de auxilio pare execução do simulador no modo passo a passo
+    boolean returnUniControlePassoAPasso[] = new boolean[13];
+    boolean returnPCPassoAPasso[] = new boolean[8];
+    boolean returnMuxPassoAPasso[] = new boolean[8];
+    boolean returnREMPassoAPasso[] = new boolean[8];
+    boolean returnMemoriaPassoAPasso[] = new boolean[8];
+    boolean returnRDMPassoAPasso[] = new boolean[8];
+    boolean returnDecodPassoAPasso[] = new boolean[4];
+    boolean returnULAPassoAPasso[] = new boolean[8];
+    boolean returnACPassoAPasso[] = new boolean[8];
 
 
     public boolean executarCompleto(){
@@ -102,26 +113,135 @@ public class SimuladorNeander {
             incrementaPC =  returnUniControle[12];
             hlt =           returnUniControle[13];
             
-            /*System.out.println("selUla : " + selUla[0] + " "+ selUla[1] + " " + selUla[2]);
-            System.out.println("cargaNZ : " + cargaNZ);
-            System.out.println("cargaAC : " + cargaAC);
-            System.out.println("cargaRI : " + cargaRI);
-            System.out.println("cargaRDM : " + cargaRDM);
-            System.out.println("write : " + write);
-            System.out.println("read : " + read);
-            System.out.println("cargaREM : " + cargaREM);
-            System.out.println("sel : " + sel);
-            System.out.println("cargaPC : " + cargaPC);
-            System.out.println("incrementaPC : " + incrementaPC);
-            System.out.println(" hlt : " +  hlt);*/
-
-
             System.out.println("\n ########  FINAL while \n");
             
         }while(!hlt && contPC < 255);
 
 
         return true;
+    }
+
+
+    public boolean executarPassoAPasso(){
+
+        System.out.println(" \n============= Botão Rodar Passo a Passo ============\n");
+
+        boolean clock;
+        boolean hlt;
+        boolean flagN;
+        boolean flagZ;
+        boolean selUla[] = new boolean[3];
+        boolean cargaNZ;
+        boolean cargaAC;
+        boolean cargaRI;
+        boolean cargaRDM;
+        boolean write;
+        boolean read;
+        boolean cargaREM;
+        boolean sel;
+        boolean cargaPC;
+        boolean incrementaPC;
+
+        boolean zero[] = {false,false,false,false,false,false,false,false};
+
+        int contPC = converter.paraInteiro(pc.executar(false, false,zero));
+       
+        if(contPC == 0){
+            System.out.println(" %%%%%%%%%%% Passo a Passo if contPC = 0");
+
+            clock = true;
+            hlt = false;
+            flagN = ula.getN();
+            flagZ = ula.getZ();
+            //selUla[] = new boolean[3];
+            cargaNZ = false;
+            cargaAC = false;
+            cargaRI = true;
+            cargaRDM = true;
+            write = false;
+            read = true;
+            cargaREM = true;
+            sel = false;
+            cargaPC = false;
+            incrementaPC = true;
+
+            returnPCPassoAPasso = pc.executar(cargaPC, incrementaPC,returnRDMPassoAPasso);
+            returnMuxPassoAPasso = mux.executar(returnPCPassoAPasso, returnRDMPassoAPasso, sel);
+            returnREMPassoAPasso = rem.executar(returnMuxPassoAPasso,clock,cargaREM);
+
+            contPC = converter.paraInteiro(returnPCPassoAPasso);
+            System.out.println(" >> PC: " + contPC);
+            
+            returnMemoriaPassoAPasso = memoria.executar(read, write, returnREMPassoAPasso, returnRDMPassoAPasso);
+            returnRDMPassoAPasso = rdm.executar(returnMemoriaPassoAPasso, clock, cargaRDM);
+            
+            System.out.println("endereço acessado na memoria:" + converter.paraInteiro(returnREMPassoAPasso) +  " dado gravado ou lido: " +converter.paraInteiro(returnRDMPassoAPasso));
+  
+            returnDecodPassoAPasso = decodificador.executar(returnRDMPassoAPasso,cargaRI);
+            
+            returnULAPassoAPasso = ula.executar(selUla, cargaNZ, returnACPassoAPasso, returnRDMPassoAPasso);
+            flagN = ula.getN();
+            flagZ = ula.getZ();
+            returnACPassoAPasso = ac.executar(returnULAPassoAPasso, clock, cargaAC);
+
+            System.out.println(" DADO SALVO NO AC: " + converter.paraInteiro(returnACPassoAPasso));
+            System.out.println(" SAIDA DA ULA: " + converter.paraInteiro(returnULAPassoAPasso) + "  FLAG N: " + flagN +"  FALG Z: " + flagZ);
+            System.out.println("Unidade de controle vai receber o opcode: "+ converter.paraInteiro(returnDecodPassoAPasso) );
+
+            returnUniControlePassoAPasso = uControle.executar(returnDecodPassoAPasso, flagN, flagZ, clock);
+
+        }else if(contPC > 0 && contPC < 255){
+            
+            System.out.println(" %%%%%%%%%%% Passo a Passo if contPC > 0");
+
+            selUla[0] =     returnUniControlePassoAPasso[0];
+            selUla[1] =     returnUniControlePassoAPasso[1];
+            selUla[2] =     returnUniControlePassoAPasso[2];
+            cargaNZ =       returnUniControlePassoAPasso[3];
+            cargaAC =       returnUniControlePassoAPasso[4];
+            cargaRI =       returnUniControlePassoAPasso[5];
+            cargaRDM =      returnUniControlePassoAPasso[6];
+            write =         returnUniControlePassoAPasso[7];
+            read =          returnUniControlePassoAPasso[8];
+            cargaREM =      returnUniControlePassoAPasso[9];
+            sel =           returnUniControlePassoAPasso[10];
+            cargaPC =       returnUniControlePassoAPasso[11];
+            incrementaPC =  returnUniControlePassoAPasso[12];
+            hlt =           returnUniControlePassoAPasso[13];
+
+            returnPCPassoAPasso = pc.executar(cargaPC, incrementaPC,returnRDMPassoAPasso);
+            returnMuxPassoAPasso = mux.executar(returnPCPassoAPasso, returnRDMPassoAPasso, sel);
+            returnREMPassoAPasso = rem.executar(returnMuxPassoAPasso,true,cargaREM);
+
+            contPC = converter.paraInteiro(returnPCPassoAPasso);
+            System.out.println(" >> PC: " + contPC);
+            
+            if(write == true){   // escrita na memoria
+                returnRDMPassoAPasso = rdm.executar(returnACPassoAPasso, true, cargaRDM);
+                returnMemoriaPassoAPasso = memoria.executar(read, write, returnREMPassoAPasso, returnRDMPassoAPasso);
+            }else{              // leitura na memoria
+                returnMemoriaPassoAPasso = memoria.executar(read, write, returnREMPassoAPasso, returnRDMPassoAPasso);
+                returnRDMPassoAPasso = rdm.executar(returnMemoriaPassoAPasso, true, cargaRDM);
+            }
+            
+            System.out.println("endereço acessado na memoria:" + converter.paraInteiro(returnREMPassoAPasso) +  " dado gravado ou lido: " +converter.paraInteiro(returnRDMPassoAPasso));
+  
+            returnDecodPassoAPasso = decodificador.executar(returnRDMPassoAPasso,cargaRI);
+            
+            returnULAPassoAPasso = ula.executar(selUla, cargaNZ, returnACPassoAPasso, returnRDMPassoAPasso);
+            flagN = ula.getN();
+            flagZ = ula.getZ();
+            returnACPassoAPasso = ac.executar(returnULAPassoAPasso, true, cargaAC);
+
+            System.out.println(" DADO SALVO NO AC: " + converter.paraInteiro(returnACPassoAPasso));
+            System.out.println(" SAIDA DA ULA: " + converter.paraInteiro(returnULAPassoAPasso) + "  FLAG N: " + flagN +"  FALG Z: " + flagZ);
+            System.out.println("Unidade de controle vai receber o opcode: "+ converter.paraInteiro(returnDecodPassoAPasso) );
+
+            returnUniControlePassoAPasso = uControle.executar(returnDecodPassoAPasso, flagN, flagZ, true);
+
+        }
+      
+    return true;
     }
 
 
@@ -181,9 +301,20 @@ public class SimuladorNeander {
         ret = ula.executar(ulaSel, true, ret, zero);
         ret = ac.executar(zero, true, true);
         
+    }
+    public void zeraPC(){
+        
+        boolean[] zero = {false,false,false,false,false,false,false,false};
+        boolean[] ulaSel = {true,false,false};
+        boolean[] ret = new boolean[8]
+        ret = pc.executar(true, false,zero);
+        ret = mux.executar(zero,zero,false);
+        ret = rem.executar(zero,true,true);
+        ret = rdm.executar(zero, true, true);
+        ret = ula.executar(ulaSel, true, ret, zero);
+        ret = ac.executar(zero, true, true);
 
     }
-
 
 }
 
