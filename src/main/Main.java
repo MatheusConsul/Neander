@@ -1,3 +1,4 @@
+package main;
 
 import simuladorNeander.TelaSimulador;
 import testes.TesteGerais;
