@@ -302,6 +302,8 @@ public class SimuladorNeander {
         ret = ac.executar(zero, true, true);
         
     }
+
+
     public void zeraPC(){
         
         boolean[] zero = {false,false,false,false,false,false,false,false};
@@ -315,6 +317,45 @@ public class SimuladorNeander {
         ret = ac.executar(zero, true, true);*/
 
     }
+
+    public String getAC(){
+        String txtFormat = "";
+        int pc = converter.paraInteiro(returnACPassoAPasso);
+        txtFormat = Integer.toString(pc);
+        return txtFormat;
+    }
+
+    public String getPC(){
+        String txtFormat = "";
+        int pc = converter.paraInteiro(returnPCPassoAPasso);
+        txtFormat = Integer.toString(pc);
+        return txtFormat;
+    }
+
+    public String getN(){
+        String txtFormat = "";
+
+        if(ula.getN()){
+            txtFormat = "1";
+        }else{
+            txtFormat ="0";
+        }
+
+        return txtFormat;
+    }
+
+    public String getZ(){
+        String txtFormat = "";
+
+        if(ula.getZ()){
+            txtFormat = "1";
+        }else{
+            txtFormat ="0";
+        }
+
+        return txtFormat;
+    }
+
 
 }
 

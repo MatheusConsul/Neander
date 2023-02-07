@@ -348,6 +348,10 @@ public class TelaSimulador extends javax.swing.JFrame {
         if(simuladorNeander.executarPassoAPasso()){
             txtInstrucao.setText(simuladorNeander.getMemoInstr());
             txtDados.setText(simuladorNeander.getMemoDados());
+            lblAcValor.setText(simuladorNeander.getAC());
+            lblPcValor.setText(simuladorNeander.getPC());
+            lblNValor.setText(simuladorNeander.getN());
+            lblZValor.setText(simuladorNeander.getZ());
         }  
 
     }          
@@ -362,17 +366,29 @@ public class TelaSimulador extends javax.swing.JFrame {
         lblPosIns.setText("Posição: "+posMemoInstru);
         txtInstrucao.setText(simuladorNeander.getMemoInstr());
         txtDados.setText(simuladorNeander.getMemoDados());
+        lblAcValor.setText(simuladorNeander.getAC());
+        lblPcValor.setText(simuladorNeander.getPC());
+        lblNValor.setText(simuladorNeander.getN());
+        lblZValor.setText(simuladorNeander.getZ());
     }      
 
     private void btnRodarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         if(simuladorNeander.executarCompleto()){
             txtInstrucao.setText(simuladorNeander.getMemoInstr());
             txtDados.setText(simuladorNeander.getMemoDados());
+            lblAcValor.setText(simuladorNeander.getAC());
+            lblPcValor.setText(simuladorNeander.getPC());
+            lblNValor.setText(simuladorNeander.getN());
+            lblZValor.setText(simuladorNeander.getZ());
         }
     }   
     
     private void btnZerarPcActionPerformed(java.awt.event.ActionEvent evt) {                                         
         simuladorNeander.zeraPC();
+        lblAcValor.setText(simuladorNeander.getAC());
+        lblPcValor.setText(simuladorNeander.getPC());
+        lblNValor.setText(simuladorNeander.getN());
+        lblZValor.setText(simuladorNeander.getZ());
     }   
 
     /**
